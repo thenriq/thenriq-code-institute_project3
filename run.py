@@ -35,3 +35,38 @@ def display_menu():
     print("5 - Add New Book")
     print("x - Exit")
     print("")
+    
+# Creates main menu and calls all functions above
+def main():
+    display_menu()
+    
+    while True:
+        choice = input("Choice: ")
+        if (choice == "1"):
+            print("option 1")
+            display_menu()
+
+        elif(choice == "2"):
+            print("option 2")
+            display_menu()
+
+        elif(choice == "3"):
+            print("option 3")
+            display_menu()
+
+        elif(choice == "4"):
+            print("option 4")
+            display_menu()
+
+        elif(choice == "5"):
+            print("option 5")
+            display_menu()
+         
+        else:
+            if (choice == 'x'):
+                break
+            else:
+                display_menu()
+
+if __name__== "__main__":
+    main()
