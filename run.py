@@ -4,6 +4,7 @@
 
 import gspread
 from google.oauth2.service_account import Credentials
+from pprint import pprint
 
 SCOPE = [
     "https://www.googleapis.com/auth/spreadsheets",
@@ -44,6 +45,11 @@ def main():
         choice = input("Choice: ")
         if (choice == "1"):
             print("option 1")
+            books = SHEET.worksheet("books")
+            column = books.col_values(2)
+            print(column)
+            
+            
             display_menu()
 
         elif(choice == "2"):
