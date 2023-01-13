@@ -21,7 +21,10 @@ books = SHEET.worksheet('books')
 
 data = books.get_all_values()
 
-# creates main menu - function called within all 6 options in main menu
+"""
+creates main menu - function called within all 6 options in main menu
+"""
+
 def display_menu():
     print("")
     print("Books Catalog")
@@ -36,8 +39,10 @@ def display_menu():
     print("5 - Add New Book")
     print("x - Exit")
     print("")
-    
-# Creates main menu and calls all functions above
+
+"""
+Creates main menu and calls all functions above
+"""
 def main():
     display_menu()
     
@@ -45,10 +50,12 @@ def main():
         choice = input("Choice: ")
         if (choice == "1"):
             print("option 1")
-            books = SHEET.worksheet("books")
-            column = books.col_values(2)
-            print(column)
+
+            book_name = books.col_values(2)
+            book_rating = books.col_values(4)
             
+            for name, rating in zip(book_name, book_rating):
+                print(f"Rating: {rating} - {name}")
             
             display_menu()
 
