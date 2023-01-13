@@ -20,4 +20,18 @@ books = SHEET.worksheet('books')
 
 data = books.get_all_values()
 
-print(data)
+# creates main menu - function called within all 6 options in main menu
+def display_menu():
+    print("")
+    print("Books Catalog")
+    print("-"*9)
+    print("")
+    print("MENU")
+    print("="*4)
+    print("1 - View Books")
+    print("2 - View Books by Author")
+    print("3 - View Books by Year of Publishing")
+    print("4 - View Publishers")
+    print("5 - Add New Book")
+    print("x - Exit")
+    print("")
