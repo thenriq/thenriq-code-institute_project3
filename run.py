@@ -2,9 +2,12 @@
 # You can delete these comments, but do not change the name of this file
 # Write your code to expect a terminal of 80 characters wide and 24 rows high
 
+
 import gspread
 from google.oauth2.service_account import Credentials
 from pprint import pprint
+import os
+import keyboard
 
 SCOPE = [
     "https://www.googleapis.com/auth/spreadsheets",
@@ -50,13 +53,25 @@ def main():
         choice = input("Choice: ")
         if (choice == "1"):
             print("option 1")
+            count = 0
 
             book_name = books.col_values(2)
             book_rating = books.col_values(4)
             
-            for name, rating in zip(book_name, book_rating):
+            for name, rating in zip((book_name), (book_rating)):
                 print(f"Rating: {rating} - {name}")
-            
+                count += 1
+                
+                # prints book list in batches of 15
+                # If count mod 15 = 0, asks to press key
+                if (count % 15) == 0:
+                    print("-- Quit (q) --")
+                    os.system('pause')
+
+                    # Breaks the looping if q is pressed
+                    if keyboard.is_pressed('q'): 
+                        break  # finishing the loop
+        
             display_menu()
 
         elif(choice == "2"):
