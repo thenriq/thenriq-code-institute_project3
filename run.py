@@ -3,11 +3,16 @@
 # Write your code to expect a terminal of 80 characters wide and 24 rows high
 
 
+from IPython.display import display
+from tkinter.tix import DisplayStyle
 import gspread
 from google.oauth2.service_account import Credentials
 
 import os
 import keyboard
+
+import pandas as pd
+
 
 
 SCOPE = [
@@ -92,7 +97,24 @@ def main():
 
         elif(choice == "5"):
             book_code = input("Enter book code: ")
-            print(f"You've chosen book {book_code}")
+            book_found = (books.row_values(books.find(book_code).row))
+            
+            #print(book_found[1])
+            
+            
+            print(f"You've chosen book {book_found[1]}")
+            
+            new_sales_item = {
+                'book_code':[book_found[0]],
+                'book_title':[book_found[1]],
+                'book_author':[book_found[2]],
+                'book_price': [book_found[5]]
+            }
+            
+            df = pd.DataFrame(new_sales_item)
+            display(df)
+            
+            
             os.system('pause')
             
             display_menu()
