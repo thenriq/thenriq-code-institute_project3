@@ -5,9 +5,10 @@
 
 import gspread
 from google.oauth2.service_account import Credentials
-from pprint import pprint
+
 import os
 import keyboard
+
 
 SCOPE = [
     "https://www.googleapis.com/auth/spreadsheets",
@@ -39,7 +40,7 @@ def display_menu():
     print("2 - View Books by Author")
     print("3 - View Books by Year of Publishing")
     print("4 - View Publishers")
-    print("5 - Add New Book")
+    print("5 - Buy a book")
     print("x - Exit")
     print("")
 
@@ -56,10 +57,13 @@ def main():
             count = 0
 
             book_name = books.col_values(2)
-            book_rating = books.col_values(4)
+            #book_rating = books.col_values(4)
+            book_index = books.col_values(1)
+            data.sort()
             
-            for name, rating in zip((book_name), (book_rating)):
-                print(f"Rating: {rating} - {name}")
+            for name, index in zip((book_name), (book_index)):
+                print(f"Code: {index} - {name}")
+                
                 count += 1
                 
                 # prints book list in batches of 15
@@ -87,7 +91,10 @@ def main():
             display_menu()
 
         elif(choice == "5"):
-            print("option 5")
+            book_code = input("Enter book code: ")
+            print(f"You've chosen book {book_code}")
+            os.system('pause')
+            
             display_menu()
          
         else:
