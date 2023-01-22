@@ -30,6 +30,20 @@ books = SHEET.worksheet('books')
 
 data = books.get_all_values()
 
+
+def get_book_id():
+    """
+    testing if book_id is an integer value
+    """
+    while True:
+        try:
+            book_code = input("Enter book code: ")
+            book_code = int(book_code)
+            break
+        except ValueError:
+            print("Invalid book number, try again")
+    return str(book_code)
+
 """
 creates main menu - function called within all 6 options in main menu
 """
@@ -96,24 +110,21 @@ def main():
             display_menu()
 
         elif(choice == "5"):
-            book_code = input("Enter book code: ")
+            book_code = get_book_id()
             book_found = (books.row_values(books.find(book_code).row))
-            
-            #print(book_found[1])
-            
-            
-            print(f"You've chosen book {book_found[1]}")
-            
+            add_basket = input((f"You've chosen '{book_found[1]}'. Add to basket? y/n\n"))
+            print (add_basket)
+                
             new_sales_item = {
-                'book_code':[book_found[0]],
-                'book_title':[book_found[1]],
-                'book_author':[book_found[2]],
-                'book_price': [book_found[5]]
+                'Code':[book_found[0]],
+                'Title':[book_found[1]],
+                'Author':[book_found[2]],
+                'Price': [book_found[5]]
             }
             
             df = pd.DataFrame(new_sales_item)
             display(df)
-            
+            print("")
             
             os.system('pause')
             
