@@ -4,7 +4,6 @@
 
 
 from IPython.display import display
-from tkinter.tix import DisplayStyle
 import gspread
 from google.oauth2.service_account import Credentials
 
@@ -35,6 +34,7 @@ def get_book_id():
     """
     testing if book_id is an integer value
     """
+    
     while True:
         try:
             book_code = input("Enter book code: ")
@@ -44,11 +44,23 @@ def get_book_id():
             print("Invalid book number, try again")
     return str(book_code)
 
-"""
-creates main menu - function called within all 6 options in main menu
-"""
+
+
+def get_choice():
+    """
+    Check if user choice is whether yes (y) or no (n)
+    """
+    choice=input("Enter your choice: (y/n): ")
+    while choice not in ['y', 'n','']:
+        choice=input("Enter your choice: (y/n): ")
+    return(choice)
+
 
 def display_menu():
+    """
+    creates main menu - function called within all 6 options in main menu
+    """
+    
     print("")
     print("Books Catalog")
     print("-"*9)
@@ -63,10 +75,12 @@ def display_menu():
     print("x - Exit")
     print("")
 
-"""
-Creates main menu and calls all functions above
-"""
+
 def main():
+    """
+    Creates main menu and calls all functions above
+    """
+    
     display_menu()
     
     while True:
@@ -110,6 +124,15 @@ def main():
             display_menu()
 
         elif(choice == "5"):
+            continue_sell = True
+            while continue_sell:
+                print("add more books? y/n")
+                add_more = get_choice()
+                if add_more == "y":
+                    continue_sell = True
+                else:
+                    continue_sell = False
+                
             book_code = get_book_id()
             book_found = (books.row_values(books.find(book_code).row))
             add_basket = input((f"You've chosen '{book_found[1]}'. Add to basket? y/n\n"))
