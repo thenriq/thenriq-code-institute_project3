@@ -34,7 +34,6 @@ def get_book_id():
     """
     testing if book_id is an integer value
     """
-    
     while True:
         try:
             book_code = input("Enter book code: ")
@@ -51,9 +50,55 @@ def get_choice():
     Check if user choice is whether yes (y) or no (n)
     """
     choice=input("Enter your choice: (y/n): ")
-    while choice not in ['y', 'n','']:
+    while choice not in ['y', 'n']:
         choice=input("Enter your choice: (y/n): ")
     return(choice)
+
+
+def choose_book():
+    """
+    Allows user to choose a book and choose 
+    whether or not this book will be added to the basket
+
+    Returns:
+        boolean: add_basket
+    """
+    book_code = get_book_id()
+    book_found = (books.row_values(books.find(book_code).row))
+    #print(f"You've chosen '{book_found[1]}'. Add to basket? y/n\n")
+    #add_choice = get_choice()
+   # if add_choice == "y":
+    #    add_basket = True
+    #else:
+    #    add_basket = False
+    return book_found
+
+def add_chart():
+    """
+    add a book to chart and ask if user wants to add more items
+    to the basket
+    """
+    
+    add_basket = choose_book()
+    print(f"You've chosen '{add_basket[1]}'. Add to basket? y/n\n")
+    add_choice = get_choice()
+    if add_choice == "y":
+        add_basket = True
+    else:
+        add_basket = False
+        
+    while add_basket:
+        print("book added to chart")
+        print("add more items? y/n")
+        choice_more = get_choice()
+        if choice_more == "y":
+            choose_book()
+        else:
+            break
+                
+    
+        
+    
 
 
 def display_menu():
@@ -124,32 +169,38 @@ def main():
             display_menu()
 
         elif(choice == "5"):
-            continue_sell = True
-            while continue_sell:
-                print("add more books? y/n")
-                add_more = get_choice()
-                if add_more == "y":
-                    continue_sell = True
-                else:
-                    continue_sell = False
-                
-            book_code = get_book_id()
-            book_found = (books.row_values(books.find(book_code).row))
-            add_basket = input((f"You've chosen '{book_found[1]}'. Add to basket? y/n\n"))
-            print (add_basket)
-                
-            new_sales_item = {
-                'Code':[book_found[0]],
-                'Title':[book_found[1]],
-                'Author':[book_found[2]],
-                'Price': [book_found[5]]
-            }
             
-            df = pd.DataFrame(new_sales_item)
-            display(df)
-            print("")
+            #choose_book()
+            add_chart()
+                
             
-            os.system('pause')
+            #continue_sell = True
+            #book_code = get_book_id()
+            #book_found = (books.row_values(books.find(book_code).row))
+            #add_basket = input((f"You've chosen '{book_found[1]}'. Add to basket? y/n\n"))
+            #print (add_basket)
+
+            #new_sales_item = {
+            #    'Code':[book_found[0]],
+            #    'Title':[book_found[1]],
+            #    'Author':[book_found[2]],
+            #    'Price': [book_found[5]]
+            #}
+            
+            #df = pd.DataFrame(new_sales_item)
+            #display(df)
+            #print("")
+            
+            #os.system('pause')
+            #while continue_sell:
+            #    print("add more books? y/n")
+            #    add_more = get_choice()
+            #    if add_more == "y":
+            #        continue_sell = True
+            #    else:
+            #        continue_sell = False
+                
+            
             
             display_menu()
          
