@@ -65,40 +65,32 @@ def choose_book():
     """
     book_code = get_book_id()
     book_found = (books.row_values(books.find(book_code).row))
-    #print(f"You've chosen '{book_found[1]}'. Add to basket? y/n\n")
-    #add_choice = get_choice()
-   # if add_choice == "y":
-    #    add_basket = True
-    #else:
-    #    add_basket = False
-    return book_found
-
-def add_chart():
-    """
-    add a book to chart and ask if user wants to add more items
-    to the basket
-    """
-    
-    add_basket = choose_book()
-    print(f"You've chosen '{add_basket[1]}'. Add to basket? y/n\n")
+    print(f"You've chosen '{book_found[1]}'. Add to basket? y/n\n")
     add_choice = get_choice()
     if add_choice == "y":
-        add_basket = True
+        add_to_basket(book_found)
     else:
-        add_basket = False
-        
-    while add_basket:
-        print("book added to chart")
-        print("add more items? y/n")
-        choice_more = get_choice()
-        if choice_more == "y":
+        print("choose another book?")
+        add_other  = get_choice()
+        while add_other == "y":
             choose_book()
-        else:
-            break
-                
     
-        
+    #return book_found
     
+def add_to_basket(book_found):
+    """
+    Add book to the basket and ask whether more books will be chosen
+    Args:
+        book_found (type = list): Holds all book information found on function choose_book()
+    """
+    print(f"'{book_found[1]}' added to basket")
+    print("add more books?")
+    add_more  = get_choice()
+    while add_more == "y":
+        choose_book()
+        add_more =  "n"
+    
+
 
 
 def display_menu():
@@ -137,7 +129,7 @@ def main():
             book_name = books.col_values(2)
             #book_rating = books.col_values(4)
             book_index = books.col_values(1)
-            data.sort()
+            #data.sort()
             
             for name, index in zip((book_name), (book_index)):
                 print(f"Code: {index} - {name}")
@@ -170,8 +162,8 @@ def main():
 
         elif(choice == "5"):
             
-            #choose_book()
-            add_chart()
+            choose_book()
+            #add_chart()
                 
             
             #continue_sell = True
