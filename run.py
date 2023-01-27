@@ -109,12 +109,6 @@ def add_to_basket(book_found):
         print(f"Item {i+1}:")
         print(f"Title: {book_title[i]}\nAuthor: {book_author[i]}\nPrice: {book_price[i]}\n")
     print(f"Total cart: {total_cart}\n")
-        
-        
-    #print(basket)
-    #pprint(basket)
-    #for a,b,c in zip(book_title[::3], book_author[1::3], book_price[2:3]):
-    #    print ('{:<30}{:<30}{:<}'.format(a,b,c))
     finish_purchase()
     
 
@@ -129,6 +123,7 @@ def finish_purchase():
     if finish_sell == "y":
         print("purchase completed. Good bye!")
         finish_sell = "y"
+        os.system('pause')
     else:
         add_more_items()
     
