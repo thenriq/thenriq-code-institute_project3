@@ -12,6 +12,8 @@ import keyboard
 
 import pandas as pd
 
+from pprint import pprint
+
 
 
 SCOPE = [
@@ -28,6 +30,10 @@ SHEET = GSPREAD_CLIENT.open('books_catalog')
 books = SHEET.worksheet('books')
 
 data = books.get_all_values()
+
+book_title = []
+book_author = []
+book_price = []
 
 
 def get_book_id():
@@ -91,7 +97,24 @@ def add_to_basket(book_found):
     Args:
         book_found (type = list): Holds all book information found on function choose_book()
     """
-    print(f"'{book_found[1]}' added to basket")
+    book_title.append(book_found[1])
+    book_author.append(book_found[2])
+    book_price.append(book_found[5])
+    print(f"'{book_found[1]}' added to basket\n")
+   
+    length = len(book_title)
+    total_cart = 0
+    for i in range(length):
+        total_cart += float(book_price[i])
+        print(f"Item {i+1}:")
+        print(f"Title: {book_title[i]}\nAuthor: {book_author[i]}\nPrice: {book_price[i]}\n")
+    print(f"Total cart: {total_cart}\n")
+        
+        
+    #print(basket)
+    #pprint(basket)
+    #for a,b,c in zip(book_title[::3], book_author[1::3], book_price[2:3]):
+    #    print ('{:<30}{:<30}{:<}'.format(a,b,c))
     finish_purchase()
     
 
