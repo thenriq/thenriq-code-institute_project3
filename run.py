@@ -70,12 +70,20 @@ def choose_book():
     if add_choice == "y":
         add_to_basket(book_found)
     else:
-        print("choose another book?")
-        add_other  = get_choice()
-        while add_other == "y":
-            choose_book()
+        add_more_items()
+
+def add_more_items():
+    """
+    Add more books to the list on demand
+    """
     
-    #return book_found
+    print("add more books?")
+    add_more  = get_choice()
+    if add_more == "y":
+        choose_book()
+    else:
+        add_more =  "n"
+        finish_purchase()
     
 def add_to_basket(book_found):
     """
@@ -84,14 +92,23 @@ def add_to_basket(book_found):
         book_found (type = list): Holds all book information found on function choose_book()
     """
     print(f"'{book_found[1]}' added to basket")
-    print("add more books?")
-    add_more  = get_choice()
-    while add_more == "y":
-        choose_book()
-        add_more =  "n"
+    finish_purchase()
     
 
-
+def finish_purchase():
+    """
+    Check whether or not the purchase will be completed. If not,
+    then it offers user to purchase more books
+    """
+    
+    print("finish purchase?")
+    finish_sell = get_choice()
+    if finish_sell == "y":
+        print("purchase completed. Good bye!")
+        finish_sell = "y"
+    else:
+        add_more_items()
+    
 
 def display_menu():
     """
