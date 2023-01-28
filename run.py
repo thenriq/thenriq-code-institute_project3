@@ -58,7 +58,7 @@ def get_choice():
     choice=input("Enter your choice: (y/n): ")
     while choice not in ['y', 'n']:
         choice=input("Enter your choice: (y/n): ")
-    return(choice)
+    return choice
 
 
 def choose_book():
@@ -82,7 +82,7 @@ def add_more_items():
     """
     Add more books to the list on demand
     """
-    
+
     print("add more books?")
     add_more  = get_choice()
     if add_more == "y":
@@ -90,7 +90,7 @@ def add_more_items():
     else:
         add_more =  "n"
         finish_purchase()
-    
+
 def add_to_basket(book_found):
     """
     Add book to the basket and ask whether more books will be chosen
@@ -110,7 +110,7 @@ def add_to_basket(book_found):
         print(f"Title: {book_title[i]}\nAuthor: {book_author[i]}\nPrice: {book_price[i]}\n")
     print(f"Total cart: {total_cart}\n")
     finish_purchase()
-    
+
 
 def finish_purchase():
     """
@@ -124,9 +124,7 @@ def finish_purchase():
         print("purchase completed. Good bye!")
         commit_purchase(book_title, book_author, book_price)
         #finish_sell = "y"
-        book_title.clear()
-        book_author.clear()
-        book_price.clear()
+        clear_basket(book_title, book_author, book_price)
         os.system('pause')
     else:
         add_more_items()
@@ -135,7 +133,11 @@ def commit_purchase(arr1, arr2, arr3):
     print(f"book title: {arr1}")
     print(f"book author: {arr2}")
     print(f"book price: {arr3}")
-          
+    
+def clear_basket(title, author, price):
+    title.clear()
+    author.clear()
+    price.clear()
 
 
 def display_menu():
