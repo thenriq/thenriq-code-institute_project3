@@ -110,6 +110,7 @@ def add_to_basket(book_found):
         print(f"Title: {book_title[i]}\nAuthor: {book_author[i]}\nPrice: {book_price[i]}\n")
     print(f"Total cart: {total_cart}\n")
     finish_purchase()
+    
 
 
 def finish_purchase():
@@ -121,7 +122,7 @@ def finish_purchase():
     print("finish purchase?")
     finish_sell = get_choice()
     if finish_sell == "y":
-        print("purchase completed. Good bye!")
+        print("Recording your sales...")
         commit_purchase(book_title, book_author, book_price)
         #finish_sell = "y"
         clear_basket(book_title, book_author, book_price)
@@ -137,26 +138,32 @@ def commit_purchase(arr1, arr2, arr3):
         arr2 (list): book_author
         arr3 (list): book_price
     """
+    
+    # Getting last sales number
     length = len(arr1)
+    sales = SHEET.worksheet("sales")
     items_sales = SHEET.worksheet("sales_items")
     total_items = items_sales.col_values(1)
     last_item = total_items[-1]
     
-    
+    # If table sales_number does not contain an item, the next_item will be 1
     if isinstance(last_item, str):
-    #    next_item = int(1)
-    #else:
-    #    next_item = (int(last_item) + 1)
         try:
             next_item = int(last_item)
             next_item = next_item + 1
         except ValueError:
-                next_item = int(1)
+            next_item = int(1)
+    
+    total_sale = [float(i) for i in arr3]
+    customer_name = input("Enter your name:\n")
+    
+    sales_details = (next_item, customer_name, sum(total_sale))
+    sales.append_row(sales_details)
         
     for i in range(length):
         items_details = (next_item, arr1[i], arr2[i], arr3[i])
-        #print(f"Title: {book_title[i]}\nAuthor: {book_author[i]}\nPrice: {book_price[i]}\n")
         items_sales.append_row(items_details)
+    print("Sales completed. Good bye!")
 
 
 def clear_basket(title, author, price):
