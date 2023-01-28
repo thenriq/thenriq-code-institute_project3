@@ -130,11 +130,44 @@ def finish_purchase():
         add_more_items()
         
 def commit_purchase(arr1, arr2, arr3):
-    print(f"book title: {arr1}")
-    print(f"book author: {arr2}")
-    print(f"book price: {arr3}")
+    """Recording sales into spreadsheet
+
+    Args:
+        arr1 (list): book_title
+        arr2 (list): book_author
+        arr3 (list): book_price
+    """
+    length = len(arr1)
+    items_sales = SHEET.worksheet("sales_items")
+    total_items = items_sales.col_values(1)
+    last_item = total_items[-1]
     
+    
+    if isinstance(last_item, str):
+    #    next_item = int(1)
+    #else:
+    #    next_item = (int(last_item) + 1)
+        try:
+            next_item = int(last_item)
+            next_item = next_item + 1
+        except ValueError:
+                next_item = int(1)
+        
+    for i in range(length):
+        items_details = (next_item, arr1[i], arr2[i], arr3[i])
+        #print(f"Title: {book_title[i]}\nAuthor: {book_author[i]}\nPrice: {book_price[i]}\n")
+        items_sales.append_row(items_details)
+
+
 def clear_basket(title, author, price):
+    """
+    Clear basket items after a sell is complete
+
+    Args:
+        title (list): Books titles
+        author (list): Books author
+        price (list): Books price
+    """
     title.clear()
     author.clear()
     price.clear()
