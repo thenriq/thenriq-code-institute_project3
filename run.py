@@ -122,11 +122,21 @@ def finish_purchase():
     finish_sell = get_choice()
     if finish_sell == "y":
         print("purchase completed. Good bye!")
-        finish_sell = "y"
+        commit_purchase(book_title, book_author, book_price)
+        #finish_sell = "y"
+        book_title.clear()
+        book_author.clear()
+        book_price.clear()
         os.system('pause')
     else:
         add_more_items()
-    
+        
+def commit_purchase(arr1, arr2, arr3):
+    print(f"book title: {arr1}")
+    print(f"book author: {arr2}")
+    print(f"book price: {arr3}")
+          
+
 
 def display_menu():
     """
