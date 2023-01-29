@@ -72,29 +72,36 @@ def choose_book():
     Returns:
         boolean: add_basket
     """
+    res = {}
     books_code = books.col_values(1)
     books_title = books.col_values(2)
     books_dict = dict({books_code[i]: books_title[i] for i in range(len(books_code))})
     
-    search_item = input("Enter book name: ")
+    while len(res) == 0:
+        search_item = input("Enter book name. Press ENTER to list ALL: ")
     
+    
+
     #https://www.geeksforgeeks.org/python-substring-key-match-in-dictionary/
-    res = dict(filter(lambda item: search_item in item[1], books_dict.items()))
-    
-    # printing result
-    #https://stackoverflow.com/questions/44689546/how-to-print-out-a-dictionary-nicely-in-python
-    #answered Dec 15, 2019 at 9:00
-    #Shital Shah
-    print(yaml.dump(res))
-    
-    book_code = get_book_id()
-    book_found = (books.row_values(books.find(book_code).row))
-    print(f"You've chosen '{book_found[1]}'.\nPrice: ${book_found[5]}. Add to basket? y/n\n")
-    add_choice = get_choice()
-    if add_choice == "y":
-        add_to_basket(book_found)
-    else:
-        add_more_items()
+        res = dict(filter(lambda item: search_item.casefold() in (item[1]).casefold(), books_dict.items()))
+        if len(res) == 0:
+            print("Book not found, try again")
+            
+        # printing result
+        #https://stackoverflow.com/questions/44689546/how-to-print-out-a-dictionary-nicely-in-python
+        #answered Dec 15, 2019 at 9:00
+        #Shital Shah
+            #print(yaml.dump(res))
+        else:
+            print(yaml.dump(res))
+            book_code = get_book_id()
+            book_found = (books.row_values(books.find(book_code).row))
+            print(f"You've chosen '{book_found[1]}'.\nPrice: ${book_found[5]}. Add to basket? y/n\n")
+            add_choice = get_choice()
+            if add_choice == "y":
+                add_to_basket(book_found)
+            else:
+                add_more_items()
 
 def add_more_items():
     """
