@@ -112,7 +112,7 @@ def choose_book():
                         add_more_items()
                     book_not_found = False
                 except Exception as e:
-                    print("book not found, try again")
+                    print("book not found, try again. ", e)
                     book_not_found = True
                     #return True
 
@@ -160,10 +160,13 @@ def finish_purchase():
     print("finish purchase?")
     finish_sell = get_choice()
     if finish_sell == "y":
-        print("Recording your sales...")
-        commit_purchase(book_title, book_author, book_price)
-        #finish_sell = "y"
-        clear_basket(book_title, book_author, book_price)
+        if len(book_title) != 0:
+            print("Recording your sales...")
+            commit_purchase(book_title, book_author, book_price)
+            #finish_sell = "y"
+            clear_basket(book_title, book_author, book_price)
+        else:
+            print("No items found in your basket. Sales will not be recorded. Good bye!")
         os.system('pause')
     else:
         add_more_items()
