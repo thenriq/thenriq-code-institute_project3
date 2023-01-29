@@ -36,6 +36,8 @@ data = books.get_all_values()
 book_title = []
 book_author = []
 book_price = []
+#book_published_date = []
+
 
 
 def get_book_id():
@@ -221,7 +223,11 @@ def clear_basket(title, author, price):
     price.clear()
     
 def books_by_author():
-    print("Hello from books_by_author function")
+    """
+    Creates a dictionary with author and book based on user's keyword
+    and outputs the result on alphabetical order to the screen
+    """
+    
     res = {}
     #books_code = books.col_values(1)
     books_title = books.col_values(2)
@@ -236,6 +242,71 @@ def books_by_author():
         res = dict(filter(lambda item: search_item.casefold() in (item[0]).casefold(), books_dict.items()))
         if len(res) == 0:
             print("author not found, try again")
+            
+        # printing result
+        #https://stackoverflow.com/questions/44689546/how-to-print-out-a-dictionary-nicely-in-python
+        #answered Dec 15, 2019 at 9:00
+        #Shital Shah
+            #print(yaml.dump(res))
+        else:
+            print(yaml.dump(res))
+    os.system('pause')
+
+def books_year_publishing():
+    """
+    Creates a dictionary with book and year of publishing based on user's keyword
+    and outputs the result on chronological order to the screen
+    """
+    
+    res = {}
+    #books_code = books.col_values(1)
+    books_title = books.col_values(2)
+    #books_author = books.col_values(3)
+    book_published_date = books.col_values(14)
+    books_dict = dict({book_published_date[i]:books_title[i] for i in range(len(books_title))})
+    
+    while len(res) == 0:
+        search_item = input("Enter year of publishing. Press ENTER to list ALL: ")
+        print("")
+
+    #https://www.geeksforgeeks.org/python-substring-key-match-in-dictionary/
+        res = dict(filter(lambda item: search_item.casefold() in (item[0]).casefold(), books_dict.items()))
+        if len(res) == 0:
+            print("Year not found, try again")
+            
+        # printing result
+        #https://stackoverflow.com/questions/44689546/how-to-print-out-a-dictionary-nicely-in-python
+        #answered Dec 15, 2019 at 9:00
+        #Shital Shah
+            #print(yaml.dump(res))
+        else:
+            print(yaml.dump(res))
+    os.system('pause')
+    
+   
+    
+def books_publishers():
+    """
+    Creates a dictionary with book and year of publishing based on user's keyword
+    and outputs the result on chronological order to the screen
+    """
+    
+    res = {}
+    #books_code = books.col_values(1)
+    books_title = books.col_values(2)
+    #books_author = books.col_values(3)
+    #book_published_date = books.col_values(14)
+    books_publisher = books.col_values(9)
+    books_dict = dict({books_publisher[i]:books_title[i] for i in range(len(books_title))})
+    
+    while len(res) == 0:
+        search_item = input("Enter a publisher name. Press ENTER to list ALL: ")
+        print("")
+
+    #https://www.geeksforgeeks.org/python-substring-key-match-in-dictionary/
+        res = dict(filter(lambda item: search_item.casefold() in (item[0]).casefold(), books_dict.items()))
+        if len(res) == 0:
+            print("Publisher not found, try again")
             
         # printing result
         #https://stackoverflow.com/questions/44689546/how-to-print-out-a-dictionary-nicely-in-python
@@ -303,52 +374,19 @@ def main():
             display_menu()
 
         elif(choice == "2"):
-            print("option 2")
             books_by_author()
             display_menu()
 
         elif(choice == "3"):
-            print("option 3")
+            books_year_publishing()
             display_menu()
 
         elif(choice == "4"):
-            print("option 4")
+            books_publishers()
             display_menu()
 
         elif(choice == "5"):
-            
             choose_book()
-            #add_chart()
-                
-            
-            #continue_sell = True
-            #book_code = get_book_id()
-            #book_found = (books.row_values(books.find(book_code).row))
-            #add_basket = input((f"You've chosen '{book_found[1]}'. Add to basket? y/n\n"))
-            #print (add_basket)
-
-            #new_sales_item = {
-            #    'Code':[book_found[0]],
-            #    'Title':[book_found[1]],
-            #    'Author':[book_found[2]],
-            #    'Price': [book_found[5]]
-            #}
-            
-            #df = pd.DataFrame(new_sales_item)
-            #display(df)
-            #print("")
-            
-            #os.system('pause')
-            #while continue_sell:
-            #    print("add more books? y/n")
-            #    add_more = get_choice()
-            #    if add_more == "y":
-            #        continue_sell = True
-            #    else:
-            #        continue_sell = False
-                
-            
-            
             display_menu()
          
         else:
