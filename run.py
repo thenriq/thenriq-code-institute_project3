@@ -88,7 +88,7 @@ def choose_book():
     print(yaml.dump(res))
     
     book_code = get_book_id()
-    book_found = (books.row_values(books.find(book_code).row[1]))
+    book_found = (books.row_values(books.find(book_code).row))
     print(f"You've chosen '{book_found[1]}'.\nPrice: ${book_found[5]}. Add to basket? y/n\n")
     add_choice = get_choice()
     if add_choice == "y":
