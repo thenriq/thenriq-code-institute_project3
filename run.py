@@ -219,6 +219,32 @@ def clear_basket(title, author, price):
     title.clear()
     author.clear()
     price.clear()
+    
+def books_by_author():
+    print("Hello from books_by_author function")
+    res = {}
+    #books_code = books.col_values(1)
+    books_title = books.col_values(2)
+    books_author = books.col_values(3)
+    books_dict = dict({books_author[i]:books_title[i] for i in range(len(books_title))})
+    
+    while len(res) == 0:
+        search_item = input("Enter author name. Press ENTER to list ALL: ")
+        print("")
+
+    #https://www.geeksforgeeks.org/python-substring-key-match-in-dictionary/
+        res = dict(filter(lambda item: search_item.casefold() in (item[0]).casefold(), books_dict.items()))
+        if len(res) == 0:
+            print("author not found, try again")
+            
+        # printing result
+        #https://stackoverflow.com/questions/44689546/how-to-print-out-a-dictionary-nicely-in-python
+        #answered Dec 15, 2019 at 9:00
+        #Shital Shah
+            #print(yaml.dump(res))
+        else:
+            print(yaml.dump(res))
+    os.system('pause')
 
 
 def display_menu():
@@ -278,6 +304,7 @@ def main():
 
         elif(choice == "2"):
             print("option 2")
+            books_by_author()
             display_menu()
 
         elif(choice == "3"):
