@@ -94,19 +94,27 @@ def choose_book():
             #print(yaml.dump(res))
         else:
             print(yaml.dump(res))
-            while True:
+            
+            # Validating if book id chosen is within book list available to purchase
+            # This will prevent error 'NoneType' object has no attribute 'row'
+            #while True:
+            book_not_found = True
+            while book_not_found:
                 try:
                     book_code = get_book_id()
                     book_found = (books.row_values(books.find(book_code).row))
                     print(f"You've chosen '{book_found[1]}'.\nPrice: ${book_found[5]}. Add to basket? y/n\n")
                     add_choice = get_choice()
+                    
                     if add_choice == "y":
                         add_to_basket(book_found)
                     else:
                         add_more_items()
+                    book_not_found = False
                 except Exception as e:
                     print("book not found, try again")
-                #return True
+                    book_not_found = True
+                    #return True
 
 def add_more_items():
     """
