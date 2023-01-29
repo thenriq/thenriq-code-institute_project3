@@ -229,7 +229,6 @@ def books_by_author():
     """
     
     res = {}
-    #books_code = books.col_values(1)
     books_title = books.col_values(2)
     books_author = books.col_values(3)
     books_dict = dict({books_author[i]:books_title[i] for i in range(len(books_title))})
@@ -259,9 +258,7 @@ def books_year_publishing():
     """
     
     res = {}
-    #books_code = books.col_values(1)
     books_title = books.col_values(2)
-    #books_author = books.col_values(3)
     book_published_date = books.col_values(14)
     books_dict = dict({book_published_date[i]:books_title[i] for i in range(len(books_title))})
     
@@ -292,10 +289,7 @@ def books_publishers():
     """
     
     res = {}
-    #books_code = books.col_values(1)
     books_title = books.col_values(2)
-    #books_author = books.col_values(3)
-    #book_published_date = books.col_values(14)
     books_publisher = books.col_values(9)
     books_dict = dict({books_publisher[i]:books_title[i] for i in range(len(books_title))})
     
@@ -352,17 +346,13 @@ def main():
             count = 0
 
             book_name = books.col_values(2)
-            #book_rating = books.col_values(4)
             book_index = books.col_values(1)
-            #data.sort()
-            
+                        
             for name, index in zip((book_name), (book_index)):
                 print(f"Code: {index} - {name}")
                 
                 count += 1
                 
-                # prints book list in batches of 15
-                # If count mod 15 = 0, asks to press key
                 if (count % 15) == 0:
                     print("-- Quit (q) --")
                     os.system('pause')
