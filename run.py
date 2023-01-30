@@ -262,10 +262,10 @@ def books_by_code():
             #print(yaml.dump(res))
             count = 0
             for x, y in sorted(res.items()):
-                print(f"Code: {y}, {x}")
+                print(f"Code: {y},\n{x}\n")
                 count += 1
                 
-                if (count % 15) == 0:
+                if (count % 5) == 0:
                     print("-- Quit (q) --")
                     os.system('pause')
 
