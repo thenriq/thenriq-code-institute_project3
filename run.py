@@ -245,6 +245,7 @@ def books_by_code():
     books_dict = dict({books_title[i]:books_code[i] for i in range(len(sorted(books_title)))})
     
     while len(res) == 0:
+        skip = True
         search_item = input("Enter a book name. Press ENTER to list ALL: ")
         print("")
 
@@ -271,7 +272,9 @@ def books_by_code():
 
                     # Breaks the looping if q is pressed
                     if keyboard.is_pressed('q'):
+                        skip = False
                         break  # finishing the loop
+    if skip:    
         os.system('pause')
     
     
@@ -331,6 +334,7 @@ def books_year_publishing():
     books_dict = dict({book_published_date[i]:books_title[i] for i in range(len(books_title))})
     
     while len(res) == 0:
+        skip = True
         search_item = input("Enter year of publishing. Press ENTER to list ALL: ")
         print("")
 
@@ -346,10 +350,21 @@ def books_year_publishing():
             #print(yaml.dump(res))
         else:
             #print(yaml.dump(res))
+            count = 0
             for x, y in sorted(res.items()):
                 print(f"Date: {x},\nBook name: {y}\n")
+                count += 1
                 
-    os.system('pause')
+                if (count % 5) == 0:
+                    print("-- Quit (q) --")
+                    os.system('pause')
+
+                    # Breaks the looping if q is pressed
+                    if keyboard.is_pressed('q'):
+                        skip = False
+                        break  # finishing the loop
+    if skip:           
+        os.system('pause')
     
    
     
@@ -365,6 +380,7 @@ def books_publishers():
     books_dict = dict({books_publisher[i]:books_title[i] for i in range(len(books_title))})
     
     while len(res) == 0:
+        skip = True
         search_item = input("Enter a publisher name. Press ENTER to list ALL: ")
         print("")
 
@@ -379,10 +395,22 @@ def books_publishers():
         #Shital Shah
             #print(yaml.dump(res))
         else:
+            count = 0
             for x, y in sorted(res.items()):
                 print(f"Publisher name: {x},\nBook name: {y}\n")
+                count += 1
                 
-    os.system('pause')
+                if (count % 5) == 0:
+                    print("-- Quit (q) --")
+                    os.system('pause')
+
+                    # Breaks the looping if q is pressed
+                    if keyboard.is_pressed('q'):
+                        skip = False
+                        break  # finishing the loop
+                
+    if skip:           
+        os.system('pause')
 
 
 def display_menu():
