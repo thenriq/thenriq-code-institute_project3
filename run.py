@@ -77,7 +77,7 @@ def choose_book():
     res = {}
     books_code = books.col_values(1)
     books_title = books.col_values(2)
-    books_dict = dict({books_code[i]: books_title[i] for i in range(len(books_code))})
+    books_dict = dict({books_title[i]:books_code[i]  for i in range(len(books_code))})
     
     while len(res) == 0:
         search_item = input("Enter book name. Press ENTER to list ALL: ")
@@ -85,7 +85,7 @@ def choose_book():
     
 
     #https://www.geeksforgeeks.org/python-substring-key-match-in-dictionary/
-        res = dict(filter(lambda item: search_item.casefold() in (item[1]).casefold(), books_dict.items()))
+        res = dict(filter(lambda item: search_item.casefold() in (item[0]).casefold(), books_dict.items()))
         if len(res) == 0:
             print("Book not found, try again")
             
@@ -95,7 +95,18 @@ def choose_book():
         #Shital Shah
             #print(yaml.dump(res))
         else:
-            print(yaml.dump(res))
+            count = 0
+            for x, y in sorted(res.items()):
+                print(f"Code: {y}, {x}")
+                count += 1
+                
+                if (count % 15) == 0:
+                    print("-- Quit (q) --")
+                    os.system('pause')
+
+                    # Breaks the looping if q is pressed
+                    if keyboard.is_pressed('q'):
+                        break  # finishing the loop
             
             # Validating if book id chosen is within book list available to purchase
             # This will prevent error 'NoneType' object has no attribute 'row'
