@@ -241,7 +241,23 @@ def books_search_default(header):
         search_term = "book name"
         search_item = "Book"
         for_y = "Code"
-    books_dict = dict({master_list[i]:books_title[i] for i in range(len(sorted(books_title)))})
+        item_search = 0
+    
+    elif header == "b_author":
+        master_list = books.col_values(3)
+        search_term = "book author"
+        search_item = "Author"
+        for_y = "Author"
+        item_search = 1
+        
+    elif header == "b_year":
+        master_list = books.col_values(14)
+        search_term = "year of publishing"
+        search_item = "Year"
+        for_y = "Date"
+        item_search = 1
+        
+    books_dict = dict({books_title[i]:master_list[i] for i in range(len(sorted(books_title)))})
     
     while len(res) == 0:
         skip = True
@@ -249,7 +265,7 @@ def books_search_default(header):
         print("")
         
         #https://www.geeksforgeeks.org/python-substring-key-match-in-dictionary/
-        res = dict(filter(lambda item: search_item.casefold() in (item[1]).casefold(), books_dict.items()))
+        res = dict(filter(lambda item: search_item.casefold() in (item[item_search]).casefold(), books_dict.items()))
         if len(res) == 0:
             print(f"{search_item} not found, try again")
         
@@ -257,7 +273,7 @@ def books_search_default(header):
         else:
             count = 0
             for x, y in sorted(res.items()):
-                print(f"{for_y}: {y},\nBook name: {x}\n")
+                print(f"Book name: {x}\n{for_y}: {y},\n")
                 count += 1
                 
                 if (count % 5) == 0:
@@ -486,17 +502,18 @@ def main():
             #books_by_code()
             x = 'b_code'
             books_search_default(x)
-           
-            
-        
             display_menu()
 
         elif(choice == "2"):
-            books_by_author()
+            #books_by_author()
+            x =  "b_author"
+            books_search_default(x)
             display_menu()
 
         elif(choice == "3"):
-            books_year_publishing()
+            #books_year_publishing()
+            x = "b_year"
+            books_search_default(x)
             display_menu()
 
         elif(choice == "4"):
