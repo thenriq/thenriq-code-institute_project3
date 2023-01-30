@@ -223,23 +223,46 @@ def clear_basket(title, author, price):
     price.clear()
     
 def books_by_code():
-    count = 0
+    """
+    Creates a dictionary with book and year of publishing based on user's keyword
+    and outputs the result on chronological order to the screen
+    """
+    
+    res = {}
+    books_code = books.col_values(1)    
+    books_title = books.col_values(2)
+    books_dict = dict({books_title[i]:books_code[i] for i in range(len(sorted(books_title)))})
+    
+    while len(res) == 0:
+        search_item = input("Enter a book name. Press ENTER to list ALL: ")
+        print("")
 
-    book_name = books.col_values(2)
-    book_index = books.col_values(1)
+    #https://www.geeksforgeeks.org/python-substring-key-match-in-dictionary/
+        res = dict(filter(lambda item: search_item.casefold() in (item[0]).casefold(), books_dict.items()))
+        if len(res) == 0:
+            print("Publisher not found, try again")
+            
+        # printing result
+        #https://stackoverflow.com/questions/44689546/how-to-print-out-a-dictionary-nicely-in-python
+        #answered Dec 15, 2019 at 9:00
+        #Shital Shah
+            #print(yaml.dump(res))
+        else:
+            #print(yaml.dump(res))
+            count = 0
+            for x, y in sorted(res.items()):
+                print(y, x)
+                count += 1
                 
-    for name, index in zip((book_name), (book_index)):
-        print(f"Code: {index} - {name}")
-        
-        count += 1
-        
-        if (count % 15) == 0:
-            print("-- Quit (q) --")
-            os.system('pause')
+                if (count % 15) == 0:
+                    print("-- Quit (q) --")
+                    os.system('pause')
 
-            # Breaks the looping if q is pressed
-            if keyboard.is_pressed('q'): 
-                break  # finishing the loop
+                    # Breaks the looping if q is pressed
+                    if keyboard.is_pressed('q'):
+                        break  # finishing the loop
+        os.system('pause')
+    
     
 def books_by_author():
     """
