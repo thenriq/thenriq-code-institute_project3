@@ -262,7 +262,7 @@ def books_by_code():
             #print(yaml.dump(res))
             count = 0
             for x, y in sorted(res.items()):
-                print(y, x)
+                print(f"Code: {y}, {x}")
                 count += 1
                 
                 if (count % 15) == 0:
@@ -301,7 +301,10 @@ def books_by_author():
         #Shital Shah
             #print(yaml.dump(res))
         else:
-            print(yaml.dump(res))
+            #print(yaml.dump(res))
+             for x, y in sorted(res.items()):
+                print(f"Author: {x},\nBook name: {y}\n")
+                
     os.system('pause')
 
 def books_year_publishing():
@@ -330,7 +333,10 @@ def books_year_publishing():
         #Shital Shah
             #print(yaml.dump(res))
         else:
-            print(yaml.dump(res))
+            #print(yaml.dump(res))
+            for x, y in sorted(res.items()):
+                print(f"Date: {x},\nBook name: {y}\n")
+                
     os.system('pause')
     
    
@@ -361,7 +367,9 @@ def books_publishers():
         #Shital Shah
             #print(yaml.dump(res))
         else:
-            print(yaml.dump(res))
+            for x, y in sorted(res.items()):
+                print(f"Publisher name: {x},\nBook name: {y}\n")
+                
     os.system('pause')
 
 
