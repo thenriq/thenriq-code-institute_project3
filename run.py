@@ -257,6 +257,14 @@ def books_search_default(header):
         for_y = "Date"
         item_search = 1
         
+    else:
+        header = "b_publisher"
+        master_list = books.col_values(9)
+        search_term = "publisher name"
+        search_item = "Publisher"
+        for_y = "Publisher"
+        item_search = 1
+        
     books_dict = dict({books_title[i]:master_list[i] for i in range(len(sorted(books_title)))})
     
     while len(res) == 0:
@@ -517,7 +525,9 @@ def main():
             display_menu()
 
         elif(choice == "4"):
-            books_publishers()
+            #books_publishers()
+            x = "b_publisher"
+            books_search_default(x)
             display_menu()
 
         elif(choice == "5"):
