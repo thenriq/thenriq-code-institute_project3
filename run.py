@@ -287,6 +287,7 @@ def books_by_author():
     books_dict = dict({books_author[i]:books_title[i] for i in range(len(books_title))})
     
     while len(res) == 0:
+        skip = True
         search_item = input("Enter author name. Press ENTER to list ALL: ")
         print("")
 
@@ -302,10 +303,21 @@ def books_by_author():
             #print(yaml.dump(res))
         else:
             #print(yaml.dump(res))
-             for x, y in sorted(res.items()):
+            count = 0
+            for x, y in sorted(res.items()):
                 print(f"Author: {x},\nBook name: {y}\n")
+                count += 1
                 
-    os.system('pause')
+                if (count % 5) == 0:
+                    print("-- Quit (q) --")
+                    os.system('pause')
+
+                    # Breaks the looping if q is pressed
+                    if keyboard.is_pressed('q'):
+                        skip = False
+                        break  # finishing the loop
+    if skip:
+        os.system('pause')
 
 def books_year_publishing():
     """
