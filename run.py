@@ -222,6 +222,25 @@ def clear_basket(title, author, price):
     author.clear()
     price.clear()
     
+def books_by_code():
+    count = 0
+
+    book_name = books.col_values(2)
+    book_index = books.col_values(1)
+                
+    for name, index in zip((book_name), (book_index)):
+        print(f"Code: {index} - {name}")
+        
+        count += 1
+        
+        if (count % 15) == 0:
+            print("-- Quit (q) --")
+            os.system('pause')
+
+            # Breaks the looping if q is pressed
+            if keyboard.is_pressed('q'): 
+                break  # finishing the loop
+    
 def books_by_author():
     """
     Creates a dictionary with author and book based on user's keyword
@@ -342,24 +361,8 @@ def main():
     while True:
         choice = input("Choice: ")
         if (choice == "1"):
-            print("option 1")
-            count = 0
-
-            book_name = books.col_values(2)
-            book_index = books.col_values(1)
-                        
-            for name, index in zip((book_name), (book_index)):
-                print(f"Code: {index} - {name}")
-                
-                count += 1
-                
-                if (count % 15) == 0:
-                    print("-- Quit (q) --")
-                    os.system('pause')
-
-                    # Breaks the looping if q is pressed
-                    if keyboard.is_pressed('q'): 
-                        break  # finishing the loop
+            books_by_code()
+            
         
             display_menu()
 
