@@ -111,8 +111,8 @@ def choose_book():
             # Validating if book id chosen is within book list available to purchase
             # This will prevent error 'NoneType' object has no attribute 'row'
             #while True:
-            book_not_found = True
-            while book_not_found:
+            book_was_found = True
+            while book_was_found:
                 try:
                     book_code = get_book_id()
                     book_found = (books.row_values(books.find(book_code).row))
@@ -123,11 +123,11 @@ def choose_book():
                         add_to_basket(book_found)
                     else:
                         add_more_items()
-                    book_not_found = False
+                    book_was_found = False
                 except Exception as e:
                     print("book not found, try again. ", e)
-                    book_not_found = True
-                    #return True
+                    book_was_found = True
+                    
 
 def add_more_items():
     """
