@@ -9,12 +9,12 @@ from google.oauth2.service_account import Credentials
 
 import keyboard
 
+#Wire up APIs and confirm access to google sheet
 SCOPE = [
     "https://www.googleapis.com/auth/spreadsheets",
     "https://www.googleapis.com/auth/drive.file",
     "https://www.googleapis.com/auth/drive"
     ]
-
 
 CREDS = Credentials.from_service_account_file('creds.json')
 SCOPED_CREDS = CREDS.with_scopes(SCOPE)
@@ -23,7 +23,7 @@ SHEET = GSPREAD_CLIENT.open('books_catalog')
 
 books = SHEET.worksheet('books')
 
-data = books.get_all_values()
+#data = books.get_all_values()
 
 book_title = []
 book_author = []
@@ -166,7 +166,7 @@ def commit_purchase(arr1, arr2, arr3):
     sales.append_row(sales_details)
 
     for i in range(length):
-        items_details = (next_item, arr1[i], arr2[i], arr3[i])
+        items_details = (next_item, arr1[i], arr2[i], float(arr3[i]))
         items_sales.append_row(items_details)
     print("Sales completed. Good bye!")
 
@@ -208,7 +208,7 @@ def books_search_default(header):
         item_search = 1
 
     elif header == "b_year":
-        master_list = books.col_values(14)
+        master_list = books.col_values(12)
         search_term = "year of publishing"
         search_item = "Year"
         for_y = "Date"
