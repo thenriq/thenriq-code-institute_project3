@@ -37,7 +37,7 @@ def get_book_id():
     """
     while True:
         try:
-            book_code = input("Enter book code: ")
+            book_code = input("Enter book code:\n")
             book_code = int(book_code)
             break
         except ValueError:
@@ -49,10 +49,10 @@ def get_choice():
     """
     Check if user choice is whether yes (y) or no (n)
     """
-    choice = input("Enter your choice: (y/n): ")
+    choice = input("Enter your choice: (y/n):\n")
     print("\n")
     while choice not in ['y', 'n']:
-        choice = input("Enter your choice: (y/n): ")
+        choice = input("Enter your choice: (y/n):\n")
     return choice
 
 
@@ -269,7 +269,7 @@ def books_search_default(header):
 
     while len(res) == 0:
         skip = True
-        search_item = input(f"Enter {search_term}. Press ENTER to list ALL: ")
+        search_item = input(f"Enter {search_term}. Press ENTER to list ALL:\n")
         print("")
 
         # https://www.geeksforgeeks.org/python-substring-key-match-in-dictionary/
@@ -329,7 +329,7 @@ def main():
     display_menu()
 
     while True:
-        choice = input("Choice: ")
+        choice = input("Choice:\n")
         # The 'menu_key' parameter tells to the loop
         # on 'books_search_default' function how to set
         # all variables accordingly
