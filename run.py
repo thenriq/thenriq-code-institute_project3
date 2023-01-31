@@ -1,6 +1,8 @@
-# Your code goes here.
-# You can delete these comments, but do not change the name of this file
-# Write your code to expect a terminal of 80 characters wide and 24 rows high
+"""
+Your code goes here.
+You can delete these comments, but do not change the name of this file
+Write your code to expect a terminal of 80 characters wide and 24 rows high
+"""
 
 import os
 import gspread
@@ -9,7 +11,7 @@ from google.oauth2.service_account import Credentials
 
 import keyboard
 
-#Wire up APIs and confirm access to google sheet
+# Wire up APIs and confirm access to google sheet
 SCOPE = [
     "https://www.googleapis.com/auth/spreadsheets",
     "https://www.googleapis.com/auth/drive.file",
@@ -23,11 +25,11 @@ SHEET = GSPREAD_CLIENT.open('books_catalog')
 
 books = SHEET.worksheet('books')
 
-#data = books.get_all_values()
 
 book_title = []
 book_author = []
 book_price = []
+
 
 def get_book_id():
     """
@@ -42,25 +44,27 @@ def get_book_id():
             print("Invalid book number, try again")
     return str(book_code)
 
+
 def get_choice():
     """
     Check if user choice is whether yes (y) or no (n)
     """
-    choice=input("Enter your choice: (y/n): ")
+    choice = input("Enter your choice: (y/n): ")
     print("\n")
     while choice not in ['y', 'n']:
-        choice=input("Enter your choice: (y/n): ")
+        choice = input("Enter your choice: (y/n): ")
     return choice
+
 
 def choose_book():
     """
-    Allows user to choose a book and choose 
+    Allows user to choose a book and choose
     whether or not this book will be added to the basket
 
     Returns:
         boolean: add_basket
     """
-    
+
     menu_key = 'b_code'
     books_search_default(menu_key)
     book_was_found = True
@@ -68,19 +72,23 @@ def choose_book():
         try:
             book_code = get_book_id()
             book_found = (books.row_values(books.find(book_code).row))
-            print(f"You've chosen '{book_found[1]}'.\nPrice: ${book_found[5]}. Add to basket? y/n\n")
+            print(f"You've chosen '{book_found[1]}'.")
+            print(f"Price: ${book_found[5]}. Add to basket? y/n\n")
             add_choice = get_choice()
-            
+
             if add_choice == "y":
                 add_to_basket(book_found)
             else:
                 add_more_items()
             book_was_found = False
-        # Validating if book id chosen is within book list available to purchase
-        # This will prevent error 'NoneType' object has no attribute 'row'
+        # Validating if book id chosen
+        # is within book list available to purchase
+        # This will prevent error 'NoneType' object
+        # has no attribute 'row'
         except Exception as e:
             print("book not found, try again. ", e)
             book_was_found = True
+
 
 def add_more_items():
     """
@@ -88,18 +96,20 @@ def add_more_items():
     """
 
     print("add more books?")
-    add_more  = get_choice()
+    add_more = get_choice()
     if add_more == "y":
         choose_book()
     else:
-        add_more =  "n"
+        add_more = "n"
         finish_purchase()
+
 
 def add_to_basket(book_found):
     """
     Add book to the basket and ask whether more books will be chosen
     Args:
-        book_found (type = list): Holds all book information found on function choose_book()
+        book_found (type = list): Holds all book information
+        found on function choose_book()
     """
     book_title.append(book_found[1])
     book_author.append(book_found[2])
@@ -111,9 +121,11 @@ def add_to_basket(book_found):
     for i in range(length):
         total_cart += float(book_price[i])
         print(f"Item {i+1}:")
-        print(f"Title: {book_title[i]}\nAuthor: {book_author[i]}\nPrice: {book_price[i]}\n")
+        print(f"Title: {book_title[i]}")
+        print(f"Author: {book_author[i]}\nPrice: {book_price[i]}\n")
     print(f"Total cart: {total_cart}\n")
     finish_purchase()
+
 
 def finish_purchase():
     """
@@ -127,13 +139,15 @@ def finish_purchase():
         if len(book_title) != 0:
             print("Recording your sales...")
             commit_purchase(book_title, book_author, book_price)
-            #finish_sell = "y"
+            # finish_sell = "y"
             clear_basket(book_title, book_author, book_price)
         else:
-            print("No items found in your basket. Sales will not be recorded. Good bye!")
+            print("No items found in your basket. Sales will not be recorded.")
+            print(" Good bye!")
         os.system('pause')
     else:
         add_more_items()
+
 
 def commit_purchase(arr1, arr2, arr3):
     """Recording sales into spreadsheet
@@ -170,6 +184,7 @@ def commit_purchase(arr1, arr2, arr3):
         items_sales.append_row(items_details)
     print("Sales completed. Good bye!")
 
+
 def clear_basket(title, author, price):
     """
     Clear basket items after a sell is complete
@@ -182,6 +197,7 @@ def clear_basket(title, author, price):
     title.clear()
     author.clear()
     price.clear()
+
 
 def books_search_default(header):
     """
@@ -225,16 +241,19 @@ def books_search_default(header):
         header = "b_choose"
         master_list = books.col_values(1)
 
-    books_dict = dict({books_title[i]:master_list[i] for i in range(len(sorted(books_title)))})
+    books_dict = dict({books_title[i]: master_list[i]
+                       for i in range(len(sorted(books_title)))})
 
     while len(res) == 0:
         skip = True
         search_item = input(f"Enter {search_term}. Press ENTER to list ALL: ")
         print("")
 
-        #https://www.geeksforgeeks.org/python-substring-key-match-in-dictionary/
-        #item_search defines which list of dictionary will be searched
-        res = dict(filter(lambda item: search_item.casefold() in (item[item_search]).casefold(), books_dict.items()))
+        # https://www.geeksforgeeks.org/python-substring-key-match-in-dictionary/
+        # item_search defines which list of dictionary will be searched
+        res = dict(filter(lambda item: search_item.casefold()
+                          in (item[item_search]).casefold(),
+                          books_dict.items()))
         if len(res) == 0:
             print(f"{search_item} not found, try again")
 
@@ -244,7 +263,7 @@ def books_search_default(header):
             for item_1, item_2 in sorted(res.items()):
                 print(f"Book name: {item_1}\n{for_y}: {item_2},\n")
                 count += 1
-                
+
                 if (count % 5) == 0:
                     print("-- Quit (q) --")
                     os.system('pause')
@@ -253,14 +272,15 @@ def books_search_default(header):
                     if keyboard.is_pressed('q'):
                         skip = False
                         break  # finishing the loop
-    if skip:    
+    if skip:
         os.system('pause')
+
 
 def display_menu():
     """
     creates main menu - function called within all 6 options in main menu
     """
-    
+
     print("")
     print("Books Catalog")
     print("-"*9)
@@ -280,9 +300,9 @@ def main():
     """
     Creates main menu and calls all functions above
     """
-    
+
     display_menu()
-    
+
     while True:
         choice = input("Choice: ")
         if (choice == "1"):
@@ -291,7 +311,7 @@ def main():
             display_menu()
 
         elif choice == "2":
-            menu_key =  "b_author"
+            menu_key = "b_author"
             books_search_default(menu_key)
             display_menu()
 
@@ -308,12 +328,13 @@ def main():
         elif choice == "5":
             choose_book()
             display_menu()
-         
+
         else:
             if (choice == 'x'):
                 break
             else:
                 display_menu()
 
-if __name__== "__main__":
+
+if __name__ == "__main__":
     main()
