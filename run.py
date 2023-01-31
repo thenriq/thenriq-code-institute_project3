@@ -74,60 +74,29 @@ def choose_book():
     Returns:
         boolean: add_basket
     """
-    res = {}
-    books_code = books.col_values(1)
-    books_title = books.col_values(2)
-    books_dict = dict({books_title[i]:books_code[i]  for i in range(len(books_code))})
     
-    while len(res) == 0:
-        search_item = input("Enter book name. Press ENTER to list ALL: ")
-    
-    
-
-    #https://www.geeksforgeeks.org/python-substring-key-match-in-dictionary/
-        res = dict(filter(lambda item: search_item.casefold() in (item[0]).casefold(), books_dict.items()))
-        if len(res) == 0:
-            print("Book not found, try again")
+    # Validating if book id chosen is within book list available to purchase
+    # This will prevent error 'NoneType' object has no attribute 'row'
+    #while True:
+    x = 'b_code'
+    books_search_default(x)
+    book_was_found = True
+    while book_was_found:
+        try:
+            book_code = get_book_id()
+            book_found = (books.row_values(books.find(book_code).row))
+            print(f"You've chosen '{book_found[1]}'.\nPrice: ${book_found[5]}. Add to basket? y/n\n")
+            add_choice = get_choice()
             
-        # printing result
-        #https://stackoverflow.com/questions/44689546/how-to-print-out-a-dictionary-nicely-in-python
-        #answered Dec 15, 2019 at 9:00
-        #Shital Shah
-            #print(yaml.dump(res))
-        else:
-            count = 0
-            for x, y in sorted(res.items()):
-                print(f"Code: {y},\n{x}\n")
-                count += 1
-                
-                if (count % 5) == 0:
-                    print("-- Quit (q) --")
-                    os.system('pause')
-
-                    # Breaks the looping if q is pressed
-                    if keyboard.is_pressed('q'):
-                        break  # finishing the loop
-            
-            # Validating if book id chosen is within book list available to purchase
-            # This will prevent error 'NoneType' object has no attribute 'row'
-            #while True:
+            if add_choice == "y":
+                add_to_basket(book_found)
+            else:
+                add_more_items()
+            book_was_found = False
+        except Exception as e:
+            print("book not found, try again. ", e)
             book_was_found = True
-            while book_was_found:
-                try:
-                    book_code = get_book_id()
-                    book_found = (books.row_values(books.find(book_code).row))
-                    print(f"You've chosen '{book_found[1]}'.\nPrice: ${book_found[5]}. Add to basket? y/n\n")
-                    add_choice = get_choice()
-                    
-                    if add_choice == "y":
-                        add_to_basket(book_found)
-                    else:
-                        add_more_items()
-                    book_was_found = False
-                except Exception as e:
-                    print("book not found, try again. ", e)
-                    book_was_found = True
-                    
+                        
 
 def add_more_items():
     """
@@ -257,13 +226,16 @@ def books_search_default(header):
         for_y = "Date"
         item_search = 1
         
-    else:
-        header = "b_publisher"
+    elif header == "b_publisher":
         master_list = books.col_values(9)
         search_term = "publisher name"
         search_item = "Publisher"
         for_y = "Publisher"
         item_search = 1
+    
+    else:
+        header = "b_choose"
+        master_list = books.col_values(1)
         
     books_dict = dict({books_title[i]:master_list[i] for i in range(len(sorted(books_title)))})
     
@@ -296,185 +268,7 @@ def books_search_default(header):
         os.system('pause')
             
     
-    
-def books_by_code():
-    """
-    Creates a dictionary with book and year of publishing based on user's keyword
-    and outputs the result on chronological order to the screen
-    """
-    
-    res = {}
-    books_code = books.col_values(1)    
-    books_title = books.col_values(2)
-    books_dict = dict({books_title[i]:books_code[i] for i in range(len(sorted(books_title)))})
-    
-    while len(res) == 0:
-        skip = True
-        search_item = input("Enter a book name. Press ENTER to list ALL: ")
-        print("")
 
-    #https://www.geeksforgeeks.org/python-substring-key-match-in-dictionary/
-        res = dict(filter(lambda item: search_item.casefold() in (item[0]).casefold(), books_dict.items()))
-        if len(res) == 0:
-            print("Publisher not found, try again")
-            
-        # printing result
-        #https://stackoverflow.com/questions/44689546/how-to-print-out-a-dictionary-nicely-in-python
-        #answered Dec 15, 2019 at 9:00
-        #Shital Shah
-            #print(yaml.dump(res))
-        else:
-            #print(yaml.dump(res))
-            count = 0
-            for x, y in sorted(res.items()):
-                print(f"Code: {y},\n{x}\n")
-                count += 1
-                
-                if (count % 5) == 0:
-                    print("-- Quit (q) --")
-                    os.system('pause')
-
-                    # Breaks the looping if q is pressed
-                    if keyboard.is_pressed('q'):
-                        skip = False
-                        break  # finishing the loop
-    if skip:    
-        os.system('pause')
-    
-    
-def books_by_author():
-    """
-    Creates a dictionary with author and book based on user's keyword
-    and outputs the result on alphabetical order to the screen
-    """
-    
-    res = {}
-    books_title = books.col_values(2)
-    books_author = books.col_values(3)
-    books_dict = dict({books_author[i]:books_title[i] for i in range(len(books_title))})
-    
-    while len(res) == 0:
-        skip = True
-        search_item = input("Enter author name. Press ENTER to list ALL: ")
-        print("")
-
-    #https://www.geeksforgeeks.org/python-substring-key-match-in-dictionary/
-        res = dict(filter(lambda item: search_item.casefold() in (item[0]).casefold(), books_dict.items()))
-        if len(res) == 0:
-            print("author not found, try again")
-            
-        # printing result
-        #https://stackoverflow.com/questions/44689546/how-to-print-out-a-dictionary-nicely-in-python
-        #answered Dec 15, 2019 at 9:00
-        #Shital Shah
-            #print(yaml.dump(res))
-        else:
-            #print(yaml.dump(res))
-            count = 0
-            for x, y in sorted(res.items()):
-                print(f"Author: {x},\nBook name: {y}\n")
-                count += 1
-                
-                if (count % 5) == 0:
-                    print("-- Quit (q) --")
-                    os.system('pause')
-
-                    # Breaks the looping if q is pressed
-                    if keyboard.is_pressed('q'):
-                        skip = False
-                        break  # finishing the loop
-    if skip:
-        os.system('pause')
-
-def books_year_publishing():
-    """
-    Creates a dictionary with book and year of publishing based on user's keyword
-    and outputs the result on chronological order to the screen
-    """
-    
-    res = {}
-    books_title = books.col_values(2)
-    book_published_date = books.col_values(14)
-    books_dict = dict({book_published_date[i]:books_title[i] for i in range(len(books_title))})
-    
-    while len(res) == 0:
-        skip = True
-        search_item = input("Enter year of publishing. Press ENTER to list ALL: ")
-        print("")
-
-    #https://www.geeksforgeeks.org/python-substring-key-match-in-dictionary/
-        res = dict(filter(lambda item: search_item.casefold() in (item[0]).casefold(), books_dict.items()))
-        if len(res) == 0:
-            print("Year not found, try again")
-            
-        # printing result
-        #https://stackoverflow.com/questions/44689546/how-to-print-out-a-dictionary-nicely-in-python
-        #answered Dec 15, 2019 at 9:00
-        #Shital Shah
-            #print(yaml.dump(res))
-        else:
-            #print(yaml.dump(res))
-            count = 0
-            for x, y in sorted(res.items()):
-                print(f"Date: {x},\nBook name: {y}\n")
-                count += 1
-                
-                if (count % 5) == 0:
-                    print("-- Quit (q) --")
-                    os.system('pause')
-
-                    # Breaks the looping if q is pressed
-                    if keyboard.is_pressed('q'):
-                        skip = False
-                        break  # finishing the loop
-    if skip:           
-        os.system('pause')
-    
-   
-    
-def books_publishers():
-    """
-    Creates a dictionary with book and year of publishing based on user's keyword
-    and outputs the result on chronological order to the screen
-    """
-    
-    res = {}
-    books_title = books.col_values(2)
-    books_publisher = books.col_values(9)
-    books_dict = dict({books_publisher[i]:books_title[i] for i in range(len(books_title))})
-    
-    while len(res) == 0:
-        skip = True
-        search_item = input("Enter a publisher name. Press ENTER to list ALL: ")
-        print("")
-
-    #https://www.geeksforgeeks.org/python-substring-key-match-in-dictionary/
-        res = dict(filter(lambda item: search_item.casefold() in (item[0]).casefold(), books_dict.items()))
-        if len(res) == 0:
-            print("Publisher not found, try again")
-            
-        # printing result
-        #https://stackoverflow.com/questions/44689546/how-to-print-out-a-dictionary-nicely-in-python
-        #answered Dec 15, 2019 at 9:00
-        #Shital Shah
-            #print(yaml.dump(res))
-        else:
-            count = 0
-            for x, y in sorted(res.items()):
-                print(f"Publisher name: {x},\nBook name: {y}\n")
-                count += 1
-                
-                if (count % 5) == 0:
-                    print("-- Quit (q) --")
-                    os.system('pause')
-
-                    # Breaks the looping if q is pressed
-                    if keyboard.is_pressed('q'):
-                        skip = False
-                        break  # finishing the loop
-                
-    if skip:           
-        os.system('pause')
 
 
 def display_menu():
