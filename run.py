@@ -74,7 +74,7 @@ def choose_book():
             # search a book by its id number using validated
             # result from function 'get_book_id()'
             book_found = (books.row_values(books.find(book_code).row))
-            print(f"You've chosen '{book_found[1]}'.")
+            print(f"\nYou've chosen '{book_found[1]}'.")
             print(f"Price: ${book_found[5]}. Add to basket? y/n\n")
             # The 'get_choice()' function will ensure that user
             # will either select 'y' for yes or 'n' for no
@@ -157,7 +157,7 @@ def finish_purchase():
             clear_basket(book_title, book_author, book_price)
         else:
             print("No items found in your basket. Sales will not be recorded.")
-            print(" Good bye!")
+            print("Good bye!")
         os.system('pause')
     else:
         add_more_items()
