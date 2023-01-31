@@ -242,7 +242,7 @@ def books_search_default(header):
         master_list = books.col_values(1)
 
     books_dict = dict({books_title[i]: master_list[i]
-                       for i in range(len(sorted(books_title)))})
+                       for i in range(len(books_title))})
 
     while len(res) == 0:
         skip = True
