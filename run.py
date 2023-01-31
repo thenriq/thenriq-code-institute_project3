@@ -71,12 +71,18 @@ def choose_book():
     while book_was_found:
         try:
             book_code = get_book_id()
+            # search a book by its id number using validated
+            # result from function 'get_book_id()'
             book_found = (books.row_values(books.find(book_code).row))
             print(f"You've chosen '{book_found[1]}'.")
             print(f"Price: ${book_found[5]}. Add to basket? y/n\n")
+            # The 'get_choice()' function will ensure that user
+            # will either select 'y' for yes or 'n' for no
             add_choice = get_choice()
 
             if add_choice == "y":
+                # 'add_to_basket' will create the basket items
+                # but will not record items into the table yet
                 add_to_basket(book_found)
             else:
                 add_more_items()
@@ -87,12 +93,15 @@ def choose_book():
         # has no attribute 'row'
         except Exception as e:
             print("book not found, try again. ", e)
+            # 'book_was_found' must be set to 'True'
+            # to enable user to search for a book again
             book_was_found = True
 
 
 def add_more_items():
     """
-    Add more books to the list on demand
+    Enable user to search for more books
+    that can be added to the basket
     """
 
     print("add more books?")
@@ -117,13 +126,15 @@ def add_to_basket(book_found):
     print(f"'{book_found[1]}' added to basket\n")
 
     length = len(book_title)
-    total_cart = 0
+    total_basket = 0
+    # The following loop will print the user's basket
+    # on the screen for each new item added to the basket
     for i in range(length):
-        total_cart += float(book_price[i])
+        total_basket += float(book_price[i])
         print(f"Item {i+1}:")
         print(f"Title: {book_title[i]}")
         print(f"Author: {book_author[i]}\nPrice: {book_price[i]}\n")
-    print(f"Total cart: {total_cart}\n")
+    print(f"Total basket: {total_basket}\n")
     finish_purchase()
 
 
@@ -136,10 +147,13 @@ def finish_purchase():
     print("finish purchase?")
     finish_sell = get_choice()
     if finish_sell == "y":
+        # if 'book_title' list is not empty, that means that
+        # there are items in the basket
         if len(book_title) != 0:
             print("Recording your sales...")
             commit_purchase(book_title, book_author, book_price)
-            # finish_sell = "y"
+            # Clearing basket after purchased recorded by function
+            # 'commit_purchase()'
             clear_basket(book_title, book_author, book_price)
         else:
             print("No items found in your basket. Sales will not be recorded.")
@@ -171,16 +185,23 @@ def commit_purchase(arr1, arr2, arr3):
             next_item = int(last_item)
             next_item = next_item + 1
         except ValueError:
+            # that means that it failed because first item
+            # is not an integer: no sales made yet,
+            # hence it will set next item to 1
             next_item = int(1)
 
     total_sale = [float(i) for i in arr3]
     customer_name = input("Enter your name:\n")
 
     sales_details = (next_item, customer_name, sum(total_sale))
+    # Recording sales number, user's data
+    # and total of sale on tab sales
     sales.append_row(sales_details)
 
     for i in range(length):
         items_details = (next_item, arr1[i], arr2[i], float(arr3[i]))
+        # Looping through items from basket and
+        # appending it into tab sales_items
         items_sales.append_row(items_details)
     print("Sales completed. Good bye!")
 
@@ -241,6 +262,8 @@ def books_search_default(header):
         header = "b_choose"
         master_list = books.col_values(1)
 
+    # Creates a dictionary based on colums book_title
+    # and column result from loop above
     books_dict = dict({books_title[i]: master_list[i]
                        for i in range(len(books_title))})
 
@@ -251,6 +274,8 @@ def books_search_default(header):
 
         # https://www.geeksforgeeks.org/python-substring-key-match-in-dictionary/
         # item_search defines which list of dictionary will be searched
+        # item chosen by customerwill be searched
+        # in the dictionary 'res'
         res = dict(filter(lambda item: search_item.casefold()
                           in (item[item_search]).casefold(),
                           books_dict.items()))
@@ -298,13 +323,16 @@ def display_menu():
 
 def main():
     """
-    Creates main menu and calls all functions above
+    Creates main menu and calls all related functions
     """
 
     display_menu()
 
     while True:
         choice = input("Choice: ")
+        # The 'menu_key' parameter tells to the loop
+        # on 'books_search_default' function how to set
+        # all variables accordingly
         if (choice == "1"):
             menu_key = 'b_code'
             books_search_default(menu_key)
