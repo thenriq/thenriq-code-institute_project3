@@ -158,7 +158,11 @@ def finish_purchase():
         else:
             print("No items found in your basket. Sales will not be recorded.")
             print("Good bye!")
-        os.system('pause')
+        input('Press any key to continue...')
+        # The following parameter has been commented
+        # because it doesnt' work with HEROKU or LINUX
+        # based environments
+        # os.system('pause')
     else:
         add_more_items()
 
@@ -290,15 +294,23 @@ def books_search_default(header):
                 count += 1
 
                 if (count % 5) == 0:
-                    print("-- Quit (q) --")
-                    os.system('pause')
+                    # print("-- Quit (q) --")
+                    # The following parameter has been commented
+                    # because it doesnt' work with HEROKU or LINUX
+                    # based environments
+                    # os.system('pause')
+                    brk_loop = input('Press ENTER to continue or q to exit\n')
 
                     # Breaks the looping if q is pressed
-                    if keyboard.is_pressed('q'):
+                    if brk_loop == 'q':
                         skip = False
                         break  # finishing the loop
     if skip:
-        os.system('pause')
+        # The following parameter has been commented
+        # because it doesnt' work with HEROKU or LINUX
+        # based environments
+        # os.system('pause')
+        input('Press any key to continue...')
 
 
 def display_menu():
