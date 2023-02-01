@@ -158,7 +158,7 @@ def finish_purchase():
         else:
             print("No items found in your basket. Sales will not be recorded.")
             print("Good bye!")
-        input('Press any key to continue...')
+        input('Press ENTER to continue...')
         # The following parameter has been commented
         # because it doesnt' work with HEROKU or LINUX
         # based environments
@@ -207,7 +207,7 @@ def commit_purchase(arr1, arr2, arr3):
         # Looping through items from basket and
         # appending it into tab sales_items
         items_sales.append_row(items_details)
-    print("Sales completed. Good bye!")
+    print("Sales completed. Thank you!")
 
 
 def clear_basket(title, author, price):
@@ -310,7 +310,7 @@ def books_search_default(header):
         # because it doesnt' work with HEROKU or LINUX
         # based environments
         # os.system('pause')
-        input('Press any key to continue...')
+        input('Press ENTER to continue...')
 
 
 def display_menu():
