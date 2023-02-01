@@ -371,6 +371,7 @@ def main():
 
         else:
             if (choice == 'x'):
+                print("Good bye!")
                 break
             else:
                 display_menu()
