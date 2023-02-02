@@ -61,3 +61,23 @@ This option will list books, followed by its publishers. Like in the other optio
 This option simulates a books store. The customer will start by searching a book name. Then, a result list will be displayed, with the book name and book code. The next step is to enter the book code and press `ENTER`. The book will be located, displaying it's price and asking user if it should be added to his basket. The system will keep asking for a choice (only `y` or `n` is accepted as input), until a valid option is chosen
 
 ![Search a book](https://github.com/thenriq/thenriq-code-institute_project3/blob/main/assets/readme_images/menu_item_5_search_and_buying.png?raw=true)
+
+The book will then be added to the customer's basket, and the basket items will be displayed. At this stage, the sales can either be completed, by chosing `y`, or customer can opt to add more items to the basket, if chosing `n`
+
+![Add to basket](https://github.com/thenriq/thenriq-code-institute_project3/blob/main/assets/readme_images/menu_item_5_add_basket.png?raw=true)
+
+<br>
+
+If customer decides to include more items, the system will ask again for a book name
+
+![Searc more items](https://github.com/thenriq/thenriq-code-institute_project3/blob/main/assets/readme_images/menu_item_5_add_more_items.png?raw=true)
+
+<br>
+
+After added the new item, the basket will be displayed again, showing all items so far in the basket with the total price
+
+![Add more items to basket](https://github.com/thenriq/thenriq-code-institute_project3/blob/main/assets/readme_images/menu_item_5_basket_updated.png?raw=true)
+
+The purchase can now be completed. The system will ask for customer's name, and then it will record the sales in the google spreadsheet
+
+![Sales completed](https://github.com/thenriq/thenriq-code-institute_project3/blob/main/assets/readme_images/menu_item_5_purchase_complete.png?raw=true)
