@@ -13,3 +13,25 @@ All books available are stored in a google spreadsheet, and users can interact w
 The app can be controlled by using the main menu available, from options 1 to 5
 
 ![Main Menu](https://raw.githubusercontent.com/thenriq/thenriq-code-institute_project3/main/assets/readme_images/main_menu.png)
+
+If an invalid choice is made, the menu will refresh, until a valid option is chosen. The option 'x' is the choice to leave the app.
+
+### Menu Items:
+
+1. View Books:
+
+This option will list all books, with their names and codes, on batches of 5, if pressed `ENTER` without entering a book name (partial names are accepted) and show the next five books each time the key `ENTER` is pressed. If, while listing the books, the key `q` is pressed followed by `ENTER`, the loop will terminate and the main menu will be displayed again.
+
+![View all books](https://github.com/thenriq/thenriq-code-institute_project3/blob/main/assets/readme_images/menu_item_1.png?raw=true)
+
+<br>
+
+<br>
+
+- Search Books:
+
+In the option 1, a book can be searched by its name (partial names accepted), and all books found will also be listed on batches of 5.
+
+![Search books](https://github.com/thenriq/thenriq-code-institute_project3/blob/main/assets/readme_images/menu_item_1_search.png?raw=true)
+
+ 
