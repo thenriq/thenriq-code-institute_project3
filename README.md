@@ -6,10 +6,10 @@ All books available are stored in a google spreadsheet, and users can interact w
 
 [The live version is available HERE.](https://books-catalog-shopping-system.herokuapp.com/)
 
-![Books Catalog](https://raw.githubusercontent.com/thenriq/thenriq-code-institute_project3/main/readme_images/Am%20I%20Responsive_.png)
+![Books Catalog](https://raw.githubusercontent.com/thenriq/thenriq-code-institute_project3/main/assets/readme_images/Am_I_Responsive_.png)
 
 ## How the app works
 
 The app can be controlled by using the main menu available, from options 1 to 5
 
-![Main Menu](https://raw.githubusercontent.com/thenriq/thenriq-code-institute_project3/main/readme_images/main_menu.png)
+![Main Menu](https://raw.githubusercontent.com/thenriq/thenriq-code-institute_project3/main/assets/readme_images/main_menu.png)
