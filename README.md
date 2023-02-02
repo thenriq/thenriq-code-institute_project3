@@ -97,9 +97,25 @@ This app was made by following the paradigm  of *[Structured programming](https:
 
 <br>
 
+The data this app uses is stored on a Google spreadsheet, in my particular Google account.
+
+<br>
+
+In order to read and record data in this table, the app uses the *[gspread](https://docs.gspread.org/en/v5.7.0/)* module.
+
+<br>
+
+The system interface and some functionalities were based on a previous project I created while I was studying on [ATU](https://www.atu.ie/) (former GMIT). The repository for it can be found on [my Github page](https://github.com/thenriq/PythonApp-Movies)
+
+<br>
+
 The `main` function controls which tasks will be performed: search on a particular way, activate the shop module, or leave the app. All the search options in the app use the same shared function. 
 
+<br>
+
 The shop module, on the other hand, utilizes other several functions, that helps on shopping tasks, such as add an item to the basket, add more items, finish purchase, or abandon the purchase module
+
+<br>
 
 The flowchart below ilustrates how the system works:
 
