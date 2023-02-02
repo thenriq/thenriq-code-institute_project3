@@ -16,6 +16,8 @@ The app can be controlled by using the main menu available, from options 1 to 5
 
 If an invalid choice is made, the menu will refresh, until a valid option is chosen. The option `x` is the choice to leave the app.
 
+Within the option 1 to 4, if no books matches with the search term, the user will be informed and then asked to try again.
+
 ### Menu Items:
 
 1. View Books:
@@ -41,3 +43,9 @@ In the option 1, a book can be searched by its name (partial names accepted), an
 This option will list books, followed by its author name. Like in the option 1, a search can also be made, but this time it will search by an author (partial names are also accepted).
 
 ![Search by Author](https://github.com/thenriq/thenriq-code-institute_project3/blob/main/assets/readme_images/menu_item_2_search.png?raw=true)
+
+3. View Books by Year of Publishing
+
+This option will list books, followed by its publishing date. Like in the other options, a search can also be made, but this time it will search by the publishing date (partial terms are also accepted).
+
+![Search by date](https://github.com/thenriq/thenriq-code-institute_project3/blob/main/assets/readme_images/menu_item_3_search.png?raw=true)
