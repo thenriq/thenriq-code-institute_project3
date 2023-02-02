@@ -49,3 +49,9 @@ This option will list books, followed by its author name. Like in the option 1, 
 This option will list books, followed by its publishing date. Like in the other options, a search can also be made, but this time it will search by the publishing date (partial terms are also accepted).
 
 ![Search by date](https://github.com/thenriq/thenriq-code-institute_project3/blob/main/assets/readme_images/menu_item_3_search.png?raw=true)
+
+4. View Publishers
+
+This option will list books, followed by its publishers. Like in the other options, a search can also be made, but this time it will search by the book publisher (partial terms are also accepted).
+
+![Search by publisher name](https://github.com/thenriq/thenriq-code-institute_project3/blob/main/assets/readme_images/menu_item_4_search.png?raw=true)
