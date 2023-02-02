@@ -2,7 +2,7 @@
 
 Books Catalog Shopping System is a Python virtual book store, which runs on Heroku mock terminal.
 
-All books available are stored in a google spreadsheet, and users can interact with it by consulting books in different ways. It also simulates a virtual shop, which will store all purchages back in the spreadsheet
+All books available are stored in a google spreadsheet, [based on this dataset](https://www.kaggle.com/datasets/bilalyussef/google-books-dataset), and users can interact with it by consulting books in different ways. It also simulates a virtual shop, which will store all purchages back in the spreadsheet
 
 [The live version is available HERE.](https://books-catalog-shopping-system.herokuapp.com/)
 
@@ -170,4 +170,5 @@ This project was deployed on Code Institute's mock terminal for Heroku.
 
 - Code Institute for Heroku terminal
 - [GeeksforGeeks](https://www.geeksforgeeks.org/python-substring-key-match-in-dictionary/) for substring search
-- My [app movies](https://github.com/thenriq/PythonApp-Movies) repository
+- [My app movies](https://github.com/thenriq/PythonApp-Movies) repository
+- [Dataset source](https://www.kaggle.com/datasets/bilalyussef/google-books-dataset) for Google spreadsheet
