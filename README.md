@@ -55,3 +55,9 @@ This option will list books, followed by its publishing date. Like in the other 
 This option will list books, followed by its publishers. Like in the other options, a search can also be made, but this time it will search by the book publisher (partial terms are also accepted).
 
 ![Search by publisher name](https://github.com/thenriq/thenriq-code-institute_project3/blob/main/assets/readme_images/menu_item_4_search.png?raw=true)
+
+5. Buy a book
+
+This option simulates a books store. The customer will start by searching a book name. Then, a result list will be displayed, with the book name and book code. The next step is to enter the book code and press `ENTER`. The book will be located, displaying it's price and asking user if it should be added to his basket. The system will keep asking for a choice (only `y` or `n` is accepted as input), until a valid option is chosen
+
+![Search a book](https://github.com/thenriq/thenriq-code-institute_project3/blob/main/assets/readme_images/menu_item_5_search_and_buying.png?raw=true)
