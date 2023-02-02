@@ -113,10 +113,51 @@ The `main` function controls which tasks will be performed: search on a particul
 
 <br>
 
-The shop module, on the other hand, utilizes other several functions, that helps on shopping tasks, such as add an item to the basket, add more items, finish purchase, or abandon the purchase module
+The shop module, on the other hand, utilizes other several functions, but including the shared function above, that helps on shopping tasks, such as add an item to the basket, add more items, finish purchase, or abandon the purchase module
 
 <br>
 
 The flowchart below ilustrates how the system works:
 
 ![App Flowchart](https://github.com/thenriq/thenriq-code-institute_project3/blob/main/assets/readme_images/app_flowchart.png?raw=true)
+
+<br>
+
+### Testing
+
+The following ways were undertaken to perform tests on this app:
+
+* Passed through PEP8 linter and confirmed it has no issues
+* Attempted invalid and out of range inputs, such as string instead of numbers, or very long integer numbers
+* Tested locally and in the Heroku terminal, hosted by Code Institute
+
+#### Bugs
+
+**Solved Bugs**
+
+- Found an incompatibility when testing on Heroku: the functions `os.system('pause')` and `keyboard.is_pressed('q')` could not be used on Heroku, with the error `ImportError: You must be root to use this library on linux.`  I fixed that by using `input` to simulate the system pause.
+
+**Remaining Bugs** 
+
+- No remaining bugs found
+
+<br>
+
+### Deployment
+
+This project was deployed on Code Institute's mock terminal for Heroku.
+
+- Steps for deployment:
+  - Clone this repository
+  - Create a new Heroku app
+  - Set the buildbacks to `Python` and `NoteJS` in that order
+  - Link the Heroku app to the repository
+  - Click on deploy
+
+<br>
+
+### Credits
+
+- Code Institute for Heroku terminal
+- [GeeksforGeeks](https://www.geeksforgeeks.org/python-substring-key-match-in-dictionary/) for substring search
+- My [app movies](https://github.com/thenriq/PythonApp-Movies) repository
