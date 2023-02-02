@@ -1,4 +1,4 @@
-# BOOKS CATALOG SHOPPING SYSTEM
+# Books Catalog Shopping System
 
 Books Catalog Shopping System is a Python virtual book store, which runs on Heroku mock terminal.
 
@@ -22,7 +22,7 @@ Within the option 1 to 4, if no books matches with the search term, the user wil
 
 ### Menu Items:
 
-1. View Books:
+**1. View Books**:
 
 This option will list all books, with their names and codes, on batches of 5. Each time `ENTER` is pressed, the next batch of 5 will be displayed. If, while listing the books, the key `q` is pressed followed by `ENTER`, the loop will terminate and the main menu will be displayed again.
 
@@ -40,29 +40,37 @@ In the option 1, a book can be searched by its name (partial names accepted), an
 
 <br>
 
-2. View books by author
+**2. View books by author**
 
 This option will list books, followed by its author name. Like in the option 1, a search can also be made, but this time it will search by an author (partial names are also accepted).
 
 ![Search by Author](https://github.com/thenriq/thenriq-code-institute_project3/blob/main/assets/readme_images/menu_item_2_search.png?raw=true)
 
-3. View Books by Year of Publishing
+<br>
+
+**3. View Books by Year of Publishing**
 
 This option will list books, followed by its publishing date. Like in the other options, a search can also be made, but this time it will search by the publishing date (partial terms are also accepted).
 
 ![Search by date](https://github.com/thenriq/thenriq-code-institute_project3/blob/main/assets/readme_images/menu_item_3_search.png?raw=true)
 
-4. View Publishers
+<br>
+
+**4. View Publishers**
 
 This option will list books, followed by its publishers. Like in the other options, a search can also be made, but this time it will search by the book publisher (partial terms are also accepted).
 
 ![Search by publisher name](https://github.com/thenriq/thenriq-code-institute_project3/blob/main/assets/readme_images/menu_item_4_search.png?raw=true)
 
-5. Buy a book
+<br>
 
-This option simulates a books store. The customer will start by searching a book name. Then, a result list will be displayed, with the book name and book code. The next step is to enter the book code and press `ENTER`. The book will be located, displaying it's price and asking user if it should be added to his basket. The system will keep asking for a choice (only `y` or `n` is accepted as input), until a valid option is chosen
+**5. Buy a book**
+
+This option simulates a books store. The customer will start by searching a book name. Then, a result list will be displayed, with the book name and book code. The next step is to enter the book code and press `ENTER`. The book will be located, displaying it's price and asking user if it should be added to its basket. The system will keep asking for a choice (only `y` or `n` is accepted as input), until a valid option is chosen
 
 ![Search a book](https://github.com/thenriq/thenriq-code-institute_project3/blob/main/assets/readme_images/menu_item_5_search_and_buying.png?raw=true)
+
+<br>
 
 The book will then be added to the customer's basket, and the basket items will be displayed. At this stage, the sales can either be completed, by chosing `y`, or customer can opt to add more items to the basket, if chosing `n`
 
@@ -80,6 +88,8 @@ After added the new item, the basket will be displayed again, showing all items 
 
 ![Add more items to basket](https://github.com/thenriq/thenriq-code-institute_project3/blob/main/assets/readme_images/menu_item_5_basket_updated.png?raw=true)
 
+<br>
+
 The purchase can now be completed. The system will ask for customer's name, and then it will record the sales in the google spreadsheet
 
 ![Sales completed](https://github.com/thenriq/thenriq-code-institute_project3/blob/main/assets/readme_images/menu_item_5_purchase_complete.png?raw=true)
@@ -88,7 +98,7 @@ The purchase can now be completed. The system will ask for customer's name, and 
 
 ### Future features
 
-* Allow customer to preview his cart after the purchase is completed
+* Allow customer to preview its cart after the purchase is completed
 * Give customer the option to scrap the sale after basket already contain items
 
 ## Data Model
