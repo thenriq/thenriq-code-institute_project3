@@ -8,7 +8,9 @@ All books available are stored in a google spreadsheet, and users can interact w
 
 ![Books Catalog](https://raw.githubusercontent.com/thenriq/thenriq-code-institute_project3/main/assets/readme_images/Am_I_Responsive_.png)
 
-## How the app works
+## Features
+
+### Existing Features
 
 The app can be controlled by using the main menu available, from options 1 to 5
 
@@ -81,3 +83,24 @@ After added the new item, the basket will be displayed again, showing all items 
 The purchase can now be completed. The system will ask for customer's name, and then it will record the sales in the google spreadsheet
 
 ![Sales completed](https://github.com/thenriq/thenriq-code-institute_project3/blob/main/assets/readme_images/menu_item_5_purchase_complete.png?raw=true)
+
+<br>
+
+### Future features
+
+* Allow customer to preview his cart after the purchase is completed
+* Give customer the option to scrap the sale after basket already contain items
+
+## Data Model
+
+This app was made by following the paradigm  of *[Structured programming](https://www.techtarget.com/searchsoftwarequality/definition/structured-programming-modular-programming)*, utilizing a **Procedural programming (functional programming)**. Each function is dedicated to a particular task in the program
+
+<br>
+
+The `main` function controls which tasks will be performed: search on a particular way, activate the shop module, or leave the app. All the search options in the app use the same shared function. 
+
+The shop module, on the other hand, utilizes other several functions, that helps on shopping tasks, such as add an item to the basket, add more items, finish purchase, or abandon the purchase module
+
+The flowchart below ilustrates how the system works:
+
+![App Flowchart](https://github.com/thenriq/thenriq-code-institute_project3/blob/main/assets/readme_images/app_flowchart.png?raw=true)
