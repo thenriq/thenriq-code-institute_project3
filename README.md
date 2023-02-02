@@ -111,7 +111,7 @@ The data this app uses is stored on a Google spreadsheet, in my particular Googl
 
 <br>
 
-In order to read and record data in this table, the app uses the *[gspread](https://docs.gspread.org/en/v5.7.0/)* module.
+In order to read and record data in this spreadsheet, the app uses the *[gspread](https://docs.gspread.org/en/v5.7.0/)* module.
 
 <br>
 
